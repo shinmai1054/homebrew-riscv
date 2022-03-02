@@ -12,6 +12,9 @@ class RiscvGnuToolchain < Formula
 
   # enabling multilib by default, must choose to build without
   option "with-NOmultilib", "Build WITHOUT multilib support"
+  
+  # RV32i
+  option "RV32i", "RV32i"
 
   depends_on "gawk" => :build
   depends_on "gnu-sed" => :build
@@ -30,6 +33,8 @@ class RiscvGnuToolchain < Formula
       "--with-cmodel=medany",
     ]
     args << "--enable-multilib" unless build.with?("NOmultilib")
+    args << "--with-arch=rv32gc" unless build.with?("RV32i")
+    args << "--with-abi=ilp32d" unless build.with?("RV32i")
 
     # Workaround for M1
     # See https://github.com/riscv/homebrew-riscv/issues/47
