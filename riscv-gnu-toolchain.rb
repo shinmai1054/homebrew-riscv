@@ -33,7 +33,7 @@ class RiscvGnuToolchain < Formula
       "--with-cmodel=medany",
     ]
     args << "--enable-multilib" unless build.with?("NOmultilib")
-    args << "--with-arch=rv32gc" unless build.with?("RV32i")
+    args << "--with-arch=rv32g" unless build.with?("RV32i")
     args << "--with-abi=ilp32d" unless build.with?("RV32i")
 
     # Workaround for M1
